@@ -70,7 +70,7 @@ while [ $# -gt 0 ]; do
 done
 
 # technical parameters
-width=1408
+width=1404
 height=1872
 bytes_per_pixel=2
 loop_wait="true"
@@ -158,7 +158,7 @@ fi
 video_filters="$video_filters,setpts=(RTCTIME - RTCSTART) / (TB * 1000000)"
 
 # read the first $window_bytes of the framebuffer
-head_fb0="dd if=/dev/fb0 count=1 bs=$window_bytes 2>/dev/null"
+head_fb0="dd if=/dev/shm/xofb count=1 bs=$window_bytes 2>/dev/null"
 
 # loop that keeps on reading and compressing, to be executed remotely
 read_loop="while $head_fb0; do $loop_wait; done | $compress"
@@ -187,7 +187,7 @@ ssh_cmd "$read_loop" \
         -vcodec rawvideo \
         -loglevel "$loglevel" \
         -f rawvideo \
-        -pixel_format rgb565le \
+        -pixel_format rgb565 \
         -video_size "$width,$height" \
         -i - \
         "$@"

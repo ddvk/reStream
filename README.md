@@ -13,6 +13,13 @@ reMarkable screen sharing over SSH.
 2. (Optional but recommended) [Install lz4 on your host and reMarkable](#sub-second-latency).
 3. [Set up an SSH key and add it to the ssh-agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent), then add your key to the reMarkable with `ssh-copy-id root@10.11.99.1`.
 
+## RM2
+get the rm2fb_xo from remarkable2-framebuff
+```
+systemct stop xochitl
+LD_PRELOAD=/homer/toot/rm2fb_xofb.1.0.0 xochitl
+```
+
 ## Usage
 
 1. Connect your reMarkable with the USB cable.
@@ -88,3 +95,4 @@ The result should contain a line with "platform:v4l2loopback".
 Steps you can try if the script isn't working:
 - [Set up an SSH key](#installation)
 - Update `ffmpeg` to version 4.
+
